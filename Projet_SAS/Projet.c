@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define Max 100
+#define size 5
 typedef struct
 {
     int jour, mois, annee;
@@ -30,7 +32,7 @@ typedef struct
 } Produits;
 
 Clients Client;
-Produits Produit[5] = {
+Produits Produit[size] = {
     {1, 5, "Ordinateur Portable", "Electronique", "PC portable puissant", 799},
     {2, 10, "Smartphone", "Electronique", "Telephone intelligent", 499},
     {3, 15, "Casque Audio", "Accessoires", "Casque avec micro", 89},
@@ -44,7 +46,7 @@ int Calcul = 0;
 float MontantDepense = 0;
 
 char RechercheProd[20];
-Produits Statistiques[100];
+Produits Statistiques[Max];
 
 void CreerProfil();
 void AfficherProfil();
@@ -348,9 +350,9 @@ void AfficherProduits()
 
     if (choix3 == 1)
     {
-        for (int j = 0; j < 5 - 1; j++)
+        for (int j = 0; j < size - 1; j++)
         {
-            for (int i = 0; i < 5 - j - 1; i++)
+            for (int i = 0; i < size - j - 1; i++)
             {
                 if (Produit[i].prix > Produit[i + 1].prix)
                 {
@@ -363,9 +365,9 @@ void AfficherProduits()
     }
     else if (choix3 == 2)
     {
-        for (int j = 0; j < 5 - 1; j++)
+        for (int j = 0; j < size - 1; j++)
         {
-            for (int i = 0; i < 5 - j - 1; i++)
+            for (int i = 0; i < size - j - 1; i++)
             {
                 if (strcmp(Produit[i].nom, Produit[i + 1].nom) > 0)
                 {
@@ -377,7 +379,7 @@ void AfficherProduits()
         }
     }
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < size; i++)
     {
         printf("\n(%d). %s - %.2f MAD - Stock:%d\n", i + 1, Produit[i].nom, Produit[i].prix, Produit[i].stock);
     }
@@ -393,7 +395,7 @@ void RechercheProduits()
         printf("S'il vous plait, donnez-moi le nom ou le type du produit: ");
         scanf(" %[^\n]", RechercheProd);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < size; i++)
         {
             if (strcmp(RechercheProd, Produit[i].nom) == 0 ||
                 strcmp(RechercheProd, Produit[i].categorie) == 0)
@@ -461,7 +463,7 @@ void AchatProduit()
                 printf("\nEntrez le nom du produit: ");
                 scanf(" %[^\n]", RechercheProd);
 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < size; i++)
                 {
                     if (strcmp(RechercheProd, Produit[i].nom) == 0)
                     {
@@ -592,7 +594,7 @@ void MesStatistiques()
     printf("Nombre de produits achetes: %d\n", Calcul);
     for (int i = 1; i <= Calcul; i++)
     {
-        printf("\n\033[0;33m=== Produit[%d] ===\033[0m\n", i + 1);
+        printf("\n\033[0;33m=== Produit[%d] ===\033[0m\n", i);
 
         printf("nom: %s\n", Statistiques[i].nom);
         printf("prix: %.2f\n", Statistiques[i].prix);
