@@ -522,7 +522,7 @@ void AchatProduit()
                     GestionSolde();
             }
 
-            MontantDepense = Client.solde;
+            //MontantDepense = Client.solde;
             Produit[found].stock -= quantite;
             Client.solde -= montant;
 
@@ -564,7 +564,7 @@ void AchatProduit()
             Statistiques[Calcul].Date.jour = jo;
             Statistiques[Calcul].Date.mois = mo;
             Statistiques[Calcul].Date.annee = an;
-            MontantDepense -= Client.solde;
+            MontantDepense += montant;
         }
 
         if (!ProduitCree)
